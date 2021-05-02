@@ -1,0 +1,35 @@
+mat-selection-list {
+    width: 50vw;
+    min-height: 600px;
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.mat-list-base .mat-list-item.mat-2-line, .mat-list-base .mat-list-option.mat-2-line {
+    height: 65px;
+}
+
+.list-container {
+    max-width: 50%;
+    margin: 0px auto 0;
+}
+
+.center {
+    margin:0 auto;
+    content: "";
+    display: inherit;
+    font-size: 10px;
+    height: 1em;
+    left: 48%;
+    margin: 0 auto;
+    overflow: visible;
+    position: absolute;
+    top: 40%;
+    width: 1em;
+    z-index: 9999;
+}
+
+.loading {
+    background-color: #eaeaea;
+}
