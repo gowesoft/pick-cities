@@ -1,0 +1,19 @@
+.app-nav {
+    min-height: 60px;
+    line-height: 60px;
+    max-height: 64px;
+    display: flex;
+    flex-direction: row;
+    background: var(--nav-background);
+}
+
+.app-title {
+    margin: 10px 24px;
+    color: white;
+    font-size: 22px;
+    align-self: center;
+    flex: 1 1 100%;
+    font-weight: bold;
+    max-width: 30%;
+}
+

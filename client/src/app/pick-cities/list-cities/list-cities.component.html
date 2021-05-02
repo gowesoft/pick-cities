@@ -1,0 +1,32 @@
+<section class="flex list-container" id="list-view">
+    <mat-selection-list #citiesSelected [ngClass]="{'loading': showSpinner}">
+        <mat-progress-spinner   class="center"
+                                [color]="color"
+                                [mode]="mode"
+                                [value]="value"
+                                *ngIf="showSpinner">
+        </mat-progress-spinner>
+        <mat-list-option [value]="city.geonameid" *ngFor="let city of cities"
+                        [disabled]="showSpinner"
+                        [selected]="isSelected(city.geonameid)">
+            <h3 matLine> {{city.name}} </h3>
+            <p matLine>
+                <span> {{city.subcountry}} </span>
+                <span class="demo-2"> - {{city.country}} </span>
+            </p>
+        </mat-list-option>
+        
+        <mat-paginator  (page)="handlePageEvent($event)"
+                        [length]="length"
+                        [pageSize]="pageSize"
+                        [showFirstLastButtons]="showFirstLastButtons"
+                        [pageSizeOptions]="pageSizeOptions"
+                        [pageIndex]="pageIndex"
+                        [disabled]="showSpinner"
+                        *ngIf="!showSpinner || !firstSearch">
+        </mat-paginator>
+    </mat-selection-list>
+</section>
+<section class="flex list-container" id="list-view">
+    <button mat-raised-button color="primary" (click)="saveSelectedCities(citiesSelected)">Save Selected Cities</button>
+</section>
