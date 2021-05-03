@@ -1,9 +1,17 @@
 mat-selection-list {
     width: 50vw;
-    min-height: 600px;
+    min-height: 706px;
     border: 1px solid rgb(216, 216, 216);
     border-radius: 5px;
     margin-bottom: 20px;
+    margin-top: -16px;
+    position: relative;
+}
+
+mat-paginator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .mat-list-base .mat-list-item.mat-2-line, .mat-list-base .mat-list-option.mat-2-line {
@@ -21,7 +29,7 @@ mat-selection-list {
     display: inherit;
     font-size: 10px;
     height: 1em;
-    left: 48%;
+    left: 46%;
     margin: 0 auto;
     overflow: visible;
     position: absolute;

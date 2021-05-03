@@ -14,7 +14,7 @@ export class FilterComponent {
     
     constructor() { 
         this.debouncer
-            .pipe(debounceTime(250))
+            .pipe(debounceTime(500))
             .subscribe((value) => this.textChanged.emit(value));
     }
 
