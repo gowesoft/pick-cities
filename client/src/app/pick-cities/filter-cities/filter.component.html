@@ -1,7 +1,8 @@
 <section class="flex filter-container" id="filter-view">
 	<mat-form-field appearance="outline">
 		<mat-label>Type to filter by city name or country</mat-label>
-		<input matInput placeholder="City name or country">
+		<input matInput placeholder="City name or country"
+                        (input)="changeText($event.target.value)">
 		<mat-icon matSuffix>filter_alt</mat-icon>
 	</mat-form-field>
 </section>

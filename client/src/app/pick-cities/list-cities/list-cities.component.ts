@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -7,7 +7,6 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CitiesService } from '../../cities/cities.service';
-import { Subject } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
@@ -16,8 +15,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
     styleUrls: ['./list-cities.component.scss']
 })
 export class ListCitiesComponent implements OnInit {
-    @Input() subject: Subject<string> | undefined;
-    query: string | null | undefined;
+    @Input() query: string = '';
     cities: any[] = [];
     firstSearch = true;
     selectedCities: any[] = [];
@@ -109,7 +107,7 @@ export class ListCitiesComponent implements OnInit {
     getCities(): void {
         this.showSpinner = true;
         // tslint:disable-next-line: deprecation
-        this.citiesService.getCities(this.pageIndex * this.pageSize, this.pageSize, '').subscribe(
+        this.citiesService.getCities(this.pageIndex * this.pageSize, this.pageSize, this.query).subscribe(
             result => {
                 this.cities = result.data;
                 this.length = result.total;
@@ -135,6 +133,7 @@ export class ListCitiesComponent implements OnInit {
             err => {
                 this.pageIndex = this.lastPageIndex;
                 this.firstSearch = false;
+                this.showSpinner = false;
                 this.openMessage(err.error.message);
                 console.log('HTTP Error', err);
             },
@@ -142,9 +141,12 @@ export class ListCitiesComponent implements OnInit {
         );
     }
 
+    ngOnChanges(changes: SimpleChanges) {
+        this.getCities();
+    }
+
     ngOnInit(): void {
         // tslint:disable-next-line: no-non-null-assertion
-        this.query = this.activatedRoute.snapshot.paramMap.get('query')!;
         this.getCities();
     }
 
