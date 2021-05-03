@@ -19,12 +19,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { FilterComponent } from './pick-cities/filter-cities/filter.component';
 import { ListCitiesComponent } from './pick-cities/list-cities/list-cities.component';
 
+import { HighlightText } from './common/highlight-text.pipe';
+
 
 @NgModule({
     declarations: [
         AppComponent,
         FilterComponent,
-        ListCitiesComponent
+        ListCitiesComponent,
+        HighlightText
     ],
     imports: [
         BrowserModule,

@@ -9,14 +9,15 @@
         <mat-list-option [value]="city.geonameid" *ngFor="let city of cities"
                         [disabled]="showSpinner"
                         [selected]="isSelected(city.geonameid)">
-            <h3 matLine> {{city.name}} </h3>
+            <h3 matLine innerHTML="{{ city.name | highlight: query }}"></h3>
             <p matLine>
-                <span> {{city.subcountry}} </span>
-                <span class="demo-2"> - {{city.country}} </span>
+                <span innerHTML="{{ city.subcountry | highlight: query }}"></span> - 
+                <span innerHTML="{{ city.country | highlight: query }}"></span>
             </p>
         </mat-list-option>
         
-        <mat-paginator  (page)="handlePageEvent($event)"
+        <mat-paginator  [ngClass]="{'loading': showSpinner}"
+                        (page)="handlePageEvent($event)"
                         [length]="length"
                         [pageSize]="pageSize"
                         [showFirstLastButtons]="showFirstLastButtons"

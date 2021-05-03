@@ -16,6 +16,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class ListCitiesComponent implements OnInit {
     @Input() query: string = '';
+    searchTerms: string[] = [];
     cities: any[] = [];
     firstSearch = true;
     selectedCities: any[] = [];
@@ -24,7 +25,6 @@ export class ListCitiesComponent implements OnInit {
     length = 0;
     pageSize = 10;
     pageIndex = 0;
-    lastPageIndex = 0;
     pageSizeOptions = [10];
     showFirstLastButtons = true;
 
@@ -68,12 +68,15 @@ export class ListCitiesComponent implements OnInit {
             }
         });
         const citiesObj = Object.assign({}, ...cities);
+        this.showSpinner = true;
         // tslint:disable-next-line: deprecation
         this.citiesService.saveSelectedCities(citiesObj).subscribe(
             res => {
+                this.showSpinner = false;
                 this.openMessage('Selected Cities Saved');
             },
             err => {
+                this.showSpinner = false;
                 this.openMessage(err.error.message);
                 console.log('HTTP Error', err);
             },
@@ -88,7 +91,6 @@ export class ListCitiesComponent implements OnInit {
     handlePageEvent(event: PageEvent): void {
         this.length = event.length;
         this.pageSize = event.pageSize;
-        this.lastPageIndex = this.pageIndex;
         this.pageIndex = event.pageIndex;
         this.getCities();
     }
@@ -121,7 +123,8 @@ export class ListCitiesComponent implements OnInit {
                         },
                         err => {
                             this.showSpinner = false;
-                            this.openMessage(err.error.message);
+                            // this.openMessage(err.error.message);
+                            this.getCities();
                             console.log('HTTP Error', err);
                         },
                         () => console.log('HTTP request completed.')
@@ -131,21 +134,27 @@ export class ListCitiesComponent implements OnInit {
                 }
             },
             err => {
-                this.pageIndex = this.lastPageIndex;
                 this.firstSearch = false;
                 this.showSpinner = false;
-                this.openMessage(err.error.message);
+                this.getCities();
                 console.log('HTTP Error', err);
             },
             () => console.log('HTTP request completed.')
         );
     }
 
+    resetGridParams() {
+        this.pageIndex = 0;
+    }
+
     ngOnChanges(changes: SimpleChanges) {
+        this.resetGridParams();
         this.getCities();
     }
 
     ngOnInit(): void {
+        this.resetGridParams();
+        this.searchTerms = this.query.split(' ');
         // tslint:disable-next-line: no-non-null-assertion
         this.getCities();
     }
