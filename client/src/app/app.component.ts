@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -7,6 +6,6 @@ import { Subject } from 'rxjs';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    subject = new Subject<string>();
+    textToSearch: string = '';
     title = 'client';
 }

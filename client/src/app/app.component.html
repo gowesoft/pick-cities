@@ -3,8 +3,8 @@
 </nav>
 
 <div class="content">
-    <app-filter-cities [subject]="subject"></app-filter-cities>
-    <app-list-cities [subject]="subject"></app-list-cities>
+    <app-filter-cities (textChanged)="textToSearch = $event"></app-filter-cities>
+    <app-list-cities [query]="textToSearch"></app-list-cities>
     <!--<app-filter (hideLoader)="toggleLoader($event)" (sendStatements)="getStatements($event)"></app-filter>
         <app-filter>
     
