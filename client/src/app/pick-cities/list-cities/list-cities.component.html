@@ -29,5 +29,7 @@
     </mat-selection-list>
 </section>
 <section class="flex list-container" id="list-view">
-    <button mat-raised-button color="primary" (click)="saveSelectedCities(citiesSelected)">Save Selected Cities</button>
+    <button mat-raised-button color="primary"
+            (click)="saveSelectedCities(citiesSelected)"
+            [disabled]="showSpinner">Save Selected Cities</button>
 </section>
