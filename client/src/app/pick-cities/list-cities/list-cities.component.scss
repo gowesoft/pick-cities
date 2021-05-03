@@ -41,3 +41,13 @@ mat-paginator {
 .loading {
     background-color: #eaeaea;
 }
+
+@media (max-width: 1366px) {
+    mat-selection-list {
+        width: 90vw;
+    }
+
+    .list-container {
+        max-width: 90%;
+    }
+}
