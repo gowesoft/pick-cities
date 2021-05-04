@@ -19,7 +19,6 @@ export class FilterComponent {
     }
 
     changeText(text: string) {
-        // this.textChanged.emit(text);
         this.debouncer.next(text);
     }
 }

@@ -7,7 +7,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CitiesService } from '../../cities/cities.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CityInfo } from '../../models/city-info.model';
 
 @Component({
     selector: 'app-list-cities',
@@ -17,7 +17,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class ListCitiesComponent implements OnInit {
     @Input() query: string = '';
     searchTerms: string[] = [];
-    cities: any[] = [];
+    cities: CityInfo[] = [];
     firstSearch = true;
     selectedCities: any[] = [];
 
@@ -123,7 +123,6 @@ export class ListCitiesComponent implements OnInit {
                         },
                         err => {
                             this.showSpinner = false;
-                            // this.openMessage(err.error.message);
                             this.getCities();
                             console.log('HTTP Error', err);
                         },
