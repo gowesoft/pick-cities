@@ -60,11 +60,13 @@ export class ListCitiesComponent implements OnInit {
         this.cities.forEach(elemCities => {
             const index = citiesArray.indexOf(elemCities.geonameid);
             if (index === -1) {
+                const indexSelectedCities = this.selectedCities.indexOf(elemCities.geonameid);
                 const value = elemCities.geonameid;
                 const element = {
                     [value]: false
                 };
                 cities.push(element);
+                this.selectedCities.splice(indexSelectedCities, 1);
             }
         });
         const citiesObj = Object.assign({}, ...cities);

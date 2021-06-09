@@ -1,4 +1,4 @@
-<section class="flex list-container" id="list-view">
+<section class="flex list-container error" id="list-view">
     <mat-selection-list #citiesSelected [ngClass]="{'loading': showSpinner}">
         <mat-progress-spinner   class="center"
                                 [color]="color"
@@ -28,6 +28,7 @@
         </mat-paginator>
     </mat-selection-list>
 </section>
+
 <section class="flex list-container" id="list-view">
     <button mat-raised-button color="primary"
             (click)="saveSelectedCities(citiesSelected)"
